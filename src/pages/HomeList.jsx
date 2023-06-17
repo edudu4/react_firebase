@@ -1,19 +1,20 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { useNavigate } from "react-router-dom"
-import { listaTarefas, removeTarefa } from '../services/TaskService'
+import TaskContext from "../contexts/TaskContext"
 
 export default function HomeList() {
-  const [tarefas, setTarefas] = useState([])
+  const {tarefas, listaTarefas, removeTarefa} = useContext(TaskContext)
   const [loading, setLoading] = useState(false)
   const navigate = useNavigate()
 
-  async function carrega() {
-    setLoading(true)
-    const data = await listaTarefas()
-    setTarefas(data)
-    setLoading(false)
-  }
+  
   useEffect(() => {
+    async function carrega() {
+      setLoading(true)
+      const data = await listaTarefas()
+      setTarefas(data)
+      setLoading(false)
+    }
     carrega()
   }, [])
 
@@ -23,7 +24,6 @@ export default function HomeList() {
 
   async function handleRemover(key) {
     await removeTarefa(key)
-    carrega()
   }
 
   return (
