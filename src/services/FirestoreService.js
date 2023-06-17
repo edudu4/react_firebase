@@ -1,12 +1,11 @@
-import { getFirestore, getDocs, collection, query, where } from 'Firebase/firestore'
+import { getFirestore, getDocs, collection, query, where, limit } from 'firebase/firestore'
 import { app } from './FirebaseConfig'
 
 const db = getFirestore(app)
 
-export async function listaTarefa() {
+export async function listaTarefas() {
   const tarefas = []
-    const resposta =  await getDocs(query(db, collection(db, "tarefas"), 
-    where("prioridade", '==', 1))
+    const resposta =  await getDocs( query(collection(db, "tarefas"), where("prioridade", '==', 1), limit(10))
     )
     resposta.forEach((doc) => {
         tarefas.push({key: doc.id, ...doc.data()})

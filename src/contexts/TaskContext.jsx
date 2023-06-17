@@ -1,5 +1,5 @@
 import { createContext, useState } from "react"
-import { insereTarefa, listaTarefas,modificaTarefa, removeTarefa } from "../services/FirestoreService"
+import { insereTarefa, listaTarefas, modificaTarefa, removeTarefa } from "../services/FirestoreService"
 
 const TaskContext = createContext({
     tarefas: [],
@@ -51,9 +51,9 @@ export function TaskContextProvider(props) {
 
     const contexto = {
         tarefas: minhasTarefas,
-        listaTarefa: listar,
-        insereTarefas: inserir,
-        modificatarefa: modificar,
+        listaTarefas: listar,
+        insereTarefa: inserir,
+        modificaTarefa: modificar,
         removeTarefa: remover,
 
     }

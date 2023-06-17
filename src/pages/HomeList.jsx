@@ -11,8 +11,7 @@ export default function HomeList() {
   useEffect(() => {
     async function carrega() {
       setLoading(true)
-      const data = await listaTarefas()
-      setTarefas(data)
+      await listaTarefas()
       setLoading(false)
     }
     carrega()
